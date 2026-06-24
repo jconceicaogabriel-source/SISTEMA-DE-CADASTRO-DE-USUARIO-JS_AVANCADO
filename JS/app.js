@@ -9,20 +9,21 @@ import {
     extrairEmails
 } from "./utils.js";
 
-// ─── Configuração da API ────────────────────────────────────────────────────
-const API_URL = "https://crudcrud.com/api/c0d403edece942e9a2db402b775616b7/clientes";
+// Configuração da API
+const API_URL = "https://crudcrud.com/api/435c2f7a1db145a6bc4e271916153a43/clientes";
 const api = new ClienteAPI(API_URL);
 
-// ─── Referências do DOM ─────────────────────────────────────────────────────
+// Referências do DOM
 const formCliente = document.getElementById("formCliente");
 const tabelaCorpo = document.getElementById("tabelaClientesCorpo");
 const contadorEl  = document.getElementById("contadorClientes");
 
-// ─── Renderizar a tabela ────────────────────────────────────────────────────
+// Renderizar a tabela
 async function renderizarClientes() {
     exibirMensagemTabela(tabelaCorpo, "⏳ Carregando dados da API...");
 
     try {
+        // Lista de clientes da API
         const clientes = await api.listar();
 
         tabelaCorpo.innerHTML = "";
@@ -33,7 +34,7 @@ async function renderizarClientes() {
             return;
         }
 
-        // map() → transforma cada cliente em elemento <tr> e insere na tabela
+        // map() - transforma cada cliente em elemento <tr> e insere na tabela.
         clientes
             .map(criarLinhaTabela)
             .forEach(linha => tabelaCorpo.appendChild(linha));
@@ -53,12 +54,12 @@ async function renderizarClientes() {
     }
 }
 
-// ─── Atualizar contador de clientes ────────────────────────────────────────
+// Atualizar contador de clientes
 function atualizarContador(total) {
     if (contadorEl) contadorEl.textContent = `Total: ${total} cliente(s)`;
 }
 
-// ─── Evento: Cadastrar Cliente (POST) ───────────────────────────────────────
+// Evento: Cadastrar Cliente (POST)
 formCliente.addEventListener("submit", async function (event) {
     event.preventDefault();
 
@@ -81,8 +82,8 @@ formCliente.addEventListener("submit", async function (event) {
     }
 });
 
-// ─── Evento: Excluir Cliente (DELETE) via delegação de evento ───────────────
-// Usamos addEventListener na tabela, sem onclick inline no HTML (boa prática DOM)
+// Evento: Excluir Cliente (DELETE) via delegação de evento.
+// Usamos addEventListener na tabela, sem onclick inline no HTML (DOM).
 tabelaCorpo.addEventListener("click", async function (event) {
     const btn = event.target.closest(".btn-excluir");
     if (!btn) return;

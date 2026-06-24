@@ -14,6 +14,7 @@
         </header>
         <section class="form-section">
             <h2>Cadastrar Novo Cliente</h2>
+            <!--FORMULARIO, PARA CAPTURA DE DADOS-->
             <form id="formCliente">
                 <div class="input-group">
                     <label for="nome">Nome do Cliente:</label>
@@ -40,6 +41,7 @@
                             <th class="txt-centro">Ações</th>
                         </tr>
                     </thead>
+                    <!--ALVO DE RENDERIZAÇÃO DINÂMICA POR JS-->
                     <tbody id="tabelaClientesCorpo">
                         <tr>
                             <td colspan="3" class="status-carregando">Carregando dados da API...</td>
@@ -49,8 +51,7 @@
             </div>
         </section>
     </main>
-    <!--type="module" é obrigatório para usar import/export (ES Modules).
-        Com isso, o script roda automaticamente após o DOM estar pronto.-->
+    <!--INCLUSAO SCRIPT PRINCIPAL COMO MÓDULO ES6-->
     <script type="module" src="JS/app.js"></script>
 </body>
 </html>
